@@ -14,6 +14,12 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# skillforge/settings.py (al final o junto al resto de config)
+
+import os
+
+# Backend del notificador: MOCK o REAL (según variable de entorno)
+NOTIFICADOR_BACKEND = os.environ.get("NOTIFICADOR_BACKEND", "MOCK").upper()
 
 
 # Quick-start development settings - unsuitable for production

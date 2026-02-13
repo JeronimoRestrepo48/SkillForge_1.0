@@ -1,7 +1,8 @@
 # checkout_app/services.py
+from infra.notificador_factory import get_notificador
 class CheckoutService:
     def __init__(self, notificador=None):
-        self.notificador = notificador or NotificadorFactory.get_notificador()
+        self.notificador = notificador or get_notificador()
 
     def ejecutar_checkout(self, user) -> Orden | None:
         carrito = obtener_o_crear_carrito(user)
