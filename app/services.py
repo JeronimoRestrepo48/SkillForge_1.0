@@ -1,5 +1,8 @@
 # checkout_app/services.py
 from infra.notificador_factory import get_notificador
+from domain.order_builder import OrderBuilder
+from domain.order import Orden
+
 class CheckoutService:
     def __init__(self, notificador=None):
         self.notificador = notificador or get_notificador()
