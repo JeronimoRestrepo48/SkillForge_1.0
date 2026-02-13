@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orden confirmada – SkillForge</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; max-width: 480px; margin: 2rem auto; padding: 0 1rem; }
+        h1 { font-size: 1.5rem; margin-bottom: 0.5rem; color: #15803d; }
+        p { color: #555; margin-bottom: 1rem; }
+        .numero { font-weight: 600; font-size: 1.25rem; color: #111; }
+        a { display: inline-block; margin-top: 1rem; color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Orden confirmada</h1>
+    <p>Tu compra se ha procesado correctamente.</p>
+    <p>Número de orden: <span class="numero">{{ numero }}</span></p>
+    <a href="{% url 'checkout' %}">Volver al inicio</a>
+</body>
+</html>
