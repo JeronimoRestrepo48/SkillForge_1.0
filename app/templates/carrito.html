@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillForge – Carrito</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; max-width: 560px; margin: 0 auto; padding: 1rem; }
+        h1 { font-size: 1.5rem; }
+        nav { margin-bottom: 1rem; }
+        nav a { color: #2563eb; text-decoration: none; margin-right: 1rem; }
+        .total { font-size: 1.2rem; font-weight: 600; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+        th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid #e5e7eb; }
+        form.checkout { margin-top: 1rem; }
+        button, .btn { background: #2563eb; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; font-size: 1rem; text-decoration: none; display: inline-block; }
+        button:hover, .btn:hover { color: white; background: #1d4ed8; }
+        .messages { list-style: none; padding: 0; margin-bottom: 1rem; }
+        .messages li { padding: 0.5rem; border-radius: 6px; margin-bottom: 0.25rem; }
+        .warning { background: #fef3c7; color: #92400e; }
+        .success { background: #dcfce7; color: #166534; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'catalog' %}">Catálogo</a>
+        <a href="{% url 'carrito' %}">Carrito</a>
+    </nav>
+    <h1>Tu carrito</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if rows %}
+    <table>
+        <thead>
+            <tr><th>Curso</th><th>Precio</th><th>Cantidad</th><th>Subtotal</th></tr>
+        </thead>
+        <tbody>
+            {% for item, subtotal in rows %}
+            <tr>
+                <td>{{ item.curso.nombre }}</td>
+                <td>{{ item.curso.precio }} €</td>
+                <td>{{ item.cantidad }}</td>
+                <td>{{ subtotal }} €</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="total">Total: {{ total }} €</p>
+    <form method="post" action="{% url 'checkout' %}" class="checkout">
+        {% csrf_token %}
+        <button type="submit">Confirmar orden y pagar</button>
+    </form>
+    {% else %}
+    <p>El carrito está vacío. <a href="{% url 'catalog' %}" class="btn">Ir al catálogo</a></p>
+    {% endif %}
+    <p style="margin-top:1rem;"><a href="{% url 'catalog' %}">Seguir comprando</a></p>
+</body>
+</html>

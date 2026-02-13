@@ -1,6 +1,6 @@
 # domain/order_builder.py
 from decimal import Decimal
-from domain.order import Orden, OrderItem
+from app.domain.order import Orden, OrderItem
 
 class OrderBuilder:
     def __init__(self):

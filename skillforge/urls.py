@@ -16,10 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import checkout
-from app.views import orden_ok
+from app import views
 
 urlpatterns = [
-    path('', checkout, name='checkout'),
-    path('orden_ok/<str:numero>/', orden_ok, name='orden_ok'),
+    path("admin/", admin.site.urls),
+    path("", views.catalog, name="catalog"),
+    path("carrito/", views.carrito_view, name="carrito"),
+    path("carrito/add/", views.add_to_cart, name="add_to_cart"),
+    path("carrito/checkout/", views.checkout, name="checkout"),
+    path("orden_ok/<str:numero>/", views.orden_ok, name="orden_ok"),
 ]

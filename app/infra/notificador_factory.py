@@ -1,10 +1,10 @@
 from django.conf import settings
 
+
 def get_notificador():
-    backend = getattr(settings, "NOTIFICADOR_BACKEND", "MOCK")
+    backend = getattr(settings, "NOTIFICADOR_BACKEND", "MOCK").upper()
     if backend == "REAL":
-        from infra.notificadores.real import NotificadorReal
+        from app.infra.notificadores.real import NotificadorReal
         return NotificadorReal()
-    # por defecto MOCK
-    from infra.notificadores.mock import NotificadorMock
+    from app.infra.notificadores.mock import NotificadorMock
     return NotificadorMock()
